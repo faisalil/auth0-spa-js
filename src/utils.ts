@@ -315,25 +315,30 @@ const getJSON = async (url, timeout, audience, scope, options, worker) => {
 export const oauthToken = async (
   { baseUrl, timeout, audience, scope, ...options }: TokenEndpointOptions,
   worker
-) =>
-  await getJSON(
+) => {
+  const item = {
+    redirect_uri: window.location.origin,
+    ...options
+  };
+
+  var form_data = new FormData();
+
+  for (var key in item) {
+    form_data.append(key, item[key]);
+  }
+
+  return await getJSON(
     `${baseUrl}/oauth/token`,
     timeout,
     audience || 'default',
     scope,
     {
       method: 'POST',
-      body: JSON.stringify({
-        redirect_uri: window.location.origin,
-        ...options
-      }),
-      headers: {
-        'Content-type': 'application/json'
-      }
+      body: form_data
     },
     worker
   );
-
+};
 export const getCrypto = () => {
   //ie 11.x uses msCrypto
   return <Crypto>(window.crypto || (<any>window).msCrypto);
