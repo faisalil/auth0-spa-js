@@ -706,7 +706,7 @@ export default class Auth0Client {
     }
 
     const federatedQuery = federated ? `&federated` : '';
-    const url = this._url(`/v2/logout?${createQueryParams(logoutOptions)}`);
+    const url = this._url(`/endsession?${createQueryParams(logoutOptions)}`);
 
     window.location.assign(`${url}${federatedQuery}`);
   }

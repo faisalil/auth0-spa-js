@@ -307,6 +307,11 @@ export interface LogoutOptions {
    * This option cannot be specified along with the `federated` option.
    */
   localOnly?: boolean;
+
+  // modifications
+  post_logout_redirect_uri?: string;
+
+  id_token_hint?: string;
 }
 
 /**
