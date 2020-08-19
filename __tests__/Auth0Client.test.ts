@@ -183,7 +183,7 @@ describe('Auth0Client', () => {
       code_challenge: '',
       code_challenge_method: 'S256'
     });
-    assertPost('https://auth0_domain/oauth/token', {
+    assertPost('https://auth0_domain/token', {
       redirect_uri: 'my_callback_url',
       client_id: 'auth0_client_id',
       code_verifier: '123',
@@ -303,7 +303,7 @@ describe('Auth0Client', () => {
     const access_token = await auth0.getTokenSilently({ ignoreCache: true });
 
     assertPost(
-      'https://auth0_domain/oauth/token',
+      'https://auth0_domain/token',
       {
         client_id: 'auth0_client_id',
         grant_type: 'refresh_token',
@@ -326,7 +326,7 @@ describe('Auth0Client', () => {
 
     await login(auth0);
 
-    assertPost('https://auth0_domain/oauth/token', {
+    assertPost('https://auth0_domain/token', {
       redirect_uri: 'my_callback_url',
       client_id: 'auth0_client_id',
       code_verifier: '123',
@@ -346,7 +346,7 @@ describe('Auth0Client', () => {
     const access_token = await auth0.getTokenSilently({ ignoreCache: true });
 
     assertPost(
-      'https://auth0_domain/oauth/token',
+      'https://auth0_domain/token',
       {
         client_id: 'auth0_client_id',
         grant_type: 'refresh_token',
@@ -371,7 +371,7 @@ describe('Auth0Client', () => {
 
     await login(auth0);
 
-    assertPost('https://auth0_domain/oauth/token', {
+    assertPost('https://auth0_domain/token', {
       redirect_uri: 'my_callback_url',
       client_id: 'auth0_client_id',
       code_verifier: '123',
@@ -391,7 +391,7 @@ describe('Auth0Client', () => {
     const access_token = await auth0.getTokenSilently({ ignoreCache: true });
 
     assertPost(
-      'https://auth0_domain/oauth/token',
+      'https://auth0_domain/token',
       {
         client_id: 'auth0_client_id',
         grant_type: 'refresh_token',

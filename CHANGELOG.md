@@ -291,7 +291,7 @@ Replace promise polyfill for a pure one. This fixes using this library with zone
 **Fixed**
 
 - Expose raw id_token in the getIdTokenClaims method https://github.com/auth0/auth0-spa-js/pull/175
-- Fix bug where oauth/token call ignores `options.audience` https://github.com/auth0/auth0-spa-js/pull/134
+- Fix bug where token call ignores `options.audience` https://github.com/auth0/auth0-spa-js/pull/134
 
 **Added**
 

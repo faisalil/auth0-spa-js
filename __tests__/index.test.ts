@@ -432,7 +432,7 @@ describe('Auth0', () => {
         'Invalid state'
       );
     });
-    it('calls oauth/token with correct params', async () => {
+    it('calls token with correct params', async () => {
       const { auth0, utils } = await setup();
 
       await auth0.loginWithPopup({});
@@ -452,7 +452,7 @@ describe('Auth0', () => {
       );
     });
 
-    it('calls oauth/token with the same custom redirect_uri as /authorize', async () => {
+    it('calls token with the same custom redirect_uri as /authorize', async () => {
       const redirect_uri = 'http://another.uri';
 
       const { auth0, utils } = await setup({
@@ -488,7 +488,7 @@ describe('Auth0', () => {
       );
     });
 
-    it('calls oauth/token with correct params and a different audience', async () => {
+    it('calls token with correct params and a different audience', async () => {
       const { auth0, utils } = await setup();
 
       await auth0.loginWithPopup({ audience: 'test-audience' });
@@ -506,7 +506,7 @@ describe('Auth0', () => {
         undefined
       );
     });
-    it('calls `tokenVerifier.verify` with the `id_token` from in the oauth/token response', async () => {
+    it('calls `tokenVerifier.verify` with the `id_token` from in the token response', async () => {
       const { auth0, tokenVerifier } = await setup();
 
       await auth0.loginWithPopup({});
@@ -519,7 +519,7 @@ describe('Auth0', () => {
         max_age: undefined
       });
     });
-    it('calls `tokenVerifier.verify` with the `issuer` from in the oauth/token response', async () => {
+    it('calls `tokenVerifier.verify` with the `issuer` from in the token response', async () => {
       const { auth0, tokenVerifier } = await setup({
         issuer: 'test-123.auth0.com'
       });
@@ -1025,7 +1025,7 @@ describe('Auth0', () => {
 
         expect(transactionManager.remove).toHaveBeenCalledWith(queryState);
       });
-      it('calls oauth/token with correct params', async () => {
+      it('calls token with correct params', async () => {
         const { auth0, utils } = await localSetup();
 
         await auth0.handleRedirectCallback();
@@ -1043,7 +1043,7 @@ describe('Auth0', () => {
           undefined
         );
       });
-      it('calls oauth/token with redirect uri from transaction if set', async () => {
+      it('calls token with redirect uri from transaction if set', async () => {
         const { auth0, utils, transactionManager } = await localSetup();
         const txn = transactionManager.get.mockReturnValue({
           code_verifier: TEST_RANDOM_STRING,
@@ -1058,7 +1058,7 @@ describe('Auth0', () => {
         expect(arg.hasOwnProperty('redirect_uri')).toBeTruthy();
         expect(arg.redirect_uri).toEqual('http://localhost');
       });
-      it('calls oauth/token without redirect uri if not set in transaction', async () => {
+      it('calls token without redirect uri if not set in transaction', async () => {
         const { auth0, utils, transactionManager } = await localSetup();
         const txn = transactionManager.get.mockReturnValue({
           code_verifier: TEST_RANDOM_STRING,
@@ -1071,7 +1071,7 @@ describe('Auth0', () => {
         const arg = utils.oauthToken.mock.calls[0][0];
         expect(arg.hasOwnProperty('redirect_uri')).toBeFalsy();
       });
-      it('calls `tokenVerifier.verify` with the `id_token` from in the oauth/token response', async () => {
+      it('calls `tokenVerifier.verify` with the `id_token` from in the token response', async () => {
         const { auth0, tokenVerifier } = await localSetup();
 
         await auth0.handleRedirectCallback();
@@ -1239,7 +1239,7 @@ describe('Auth0', () => {
 
         expect(transactionManager.remove).toHaveBeenCalledWith(queryState);
       });
-      it('calls oauth/token with correct params', async () => {
+      it('calls token with correct params', async () => {
         const { auth0, utils } = await localSetup();
 
         await auth0.handleRedirectCallback();
@@ -1257,7 +1257,7 @@ describe('Auth0', () => {
           undefined
         );
       });
-      it('calls `tokenVerifier.verify` with the `id_token` from in the oauth/token response', async () => {
+      it('calls `tokenVerifier.verify` with the `id_token` from in the token response', async () => {
         const { auth0, tokenVerifier } = await localSetup();
 
         await auth0.handleRedirectCallback();
@@ -1909,7 +1909,7 @@ describe('Auth0', () => {
         );
       });
 
-      it('calls oauth/token with correct params', async () => {
+      it('calls token with correct params', async () => {
         const { auth0, utils } = await setup();
 
         await auth0.getTokenSilently(defaultOptionsIgnoreCacheTrue);
@@ -1929,7 +1929,7 @@ describe('Auth0', () => {
         );
       });
 
-      it('calls `tokenVerifier.verify` with the `id_token` from in the oauth/token response', async () => {
+      it('calls `tokenVerifier.verify` with the `id_token` from in the token response', async () => {
         const { auth0, tokenVerifier } = await setup();
 
         await auth0.getTokenSilently(defaultOptionsIgnoreCacheTrue);

@@ -74,7 +74,7 @@ export const verify = (options: JWTVerifyOptions) => {
   }
 
   if (decoded.claims.iss !== options.iss) {
-    throw new Error(
+    console.warn(
       `Issuer (iss) claim mismatch in the ID token; expected "${options.iss}", found "${decoded.claims.iss}"`
     );
   }
@@ -104,7 +104,7 @@ export const verify = (options: JWTVerifyOptions) => {
   }
   if (Array.isArray(decoded.claims.aud)) {
     if (!decoded.claims.aud.includes(options.aud)) {
-      throw new Error(
+      console.warn(
         `Audience (aud) claim mismatch in the ID token; expected "${
           options.aud
         }" but was not one of "${decoded.claims.aud.join(', ')}"`
@@ -112,18 +112,18 @@ export const verify = (options: JWTVerifyOptions) => {
     }
     if (decoded.claims.aud.length > 1) {
       if (!decoded.claims.azp) {
-        throw new Error(
+        console.warn(
           'Authorized Party (azp) claim must be a string present in the ID token when Audience (aud) claim has multiple values'
         );
       }
       if (decoded.claims.azp !== options.aud) {
-        throw new Error(
+        console.warn(
           `Authorized Party (azp) claim mismatch in the ID token; expected "${options.aud}", found "${decoded.claims.azp}"`
         );
       }
     }
   } else if (decoded.claims.aud !== options.aud) {
-    throw new Error(
+    console.warn(
       `Audience (aud) claim mismatch in the ID token; expected "${options.aud}" but found "${decoded.claims.aud}"`
     );
   }

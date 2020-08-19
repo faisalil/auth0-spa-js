@@ -83,7 +83,7 @@ describe('getTokenSilently', function () {
         cy.login().then(() => {
           cy.route({
             method: 'POST',
-            url: '**/oauth/token'
+            url: '**/token'
           }).as('tokenApiCheck');
 
           cy.get('[data-cy=get-token]')
@@ -116,7 +116,7 @@ describe('getTokenSilently', function () {
         cy.login().then(() => {
           cy.route({
             method: 'POST',
-            url: '**/oauth/token'
+            url: '**/token'
           }).as('tokenApiCheck');
 
           cy.get('[data-cy=get-token]')

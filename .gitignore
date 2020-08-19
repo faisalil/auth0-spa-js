@@ -7,3 +7,4 @@ cypress/videos
 .release
 .idea
 test-results
+dist

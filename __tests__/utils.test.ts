@@ -268,7 +268,7 @@ describe('utils', () => {
       utils.createAbortController = jest.fn(() => abortController);
     });
 
-    it('calls oauth/token with the correct url', async () => {
+    it('calls token with the correct url', async () => {
       mockUnfetch.mockReturnValue(
         new Promise(res =>
           res({ ok: true, json: () => new Promise(ress => ress(true)) })
@@ -283,7 +283,7 @@ describe('utils', () => {
         code_verifier: 'code_verifierIn'
       });
 
-      expect(mockUnfetch).toBeCalledWith('https://test.com/oauth/token', {
+      expect(mockUnfetch).toBeCalledWith('https://test.com/token', {
         body:
           '{"redirect_uri":"http://localhost","grant_type":"authorization_code","client_id":"client_idIn","code":"codeIn","code_verifier":"code_verifierIn"}',
         headers: { 'Content-type': 'application/json' },
@@ -294,7 +294,7 @@ describe('utils', () => {
       expect(mockUnfetch.mock.calls[0][1].signal).not.toBeUndefined();
     });
 
-    it('calls oauth/token with a worker with the correct url', async () => {
+    it('calls token with a worker with the correct url', async () => {
       mockUnfetch.mockReturnValue(
         new Promise(res =>
           res({ ok: true, json: () => new Promise(ress => ress(true)) })
@@ -323,7 +323,7 @@ describe('utils', () => {
         worker
       );
 
-      expect(mockUnfetch).toBeCalledWith('https://test.com/oauth/token', {
+      expect(mockUnfetch).toBeCalledWith('https://test.com/token', {
         body: JSON.stringify(body),
         headers: { 'Content-type': 'application/json' },
         method: 'POST',
@@ -341,7 +341,7 @@ describe('utils', () => {
           },
           method: 'POST',
           timeout: 10000,
-          url: 'https://test.com/oauth/token'
+          url: 'https://test.com/token'
         },
         expect.arrayContaining([expect.anything()])
       );
@@ -395,11 +395,11 @@ describe('utils', () => {
         });
       } catch (error) {
         expect(error.message).toBe(
-          `HTTP error. Unable to fetch https://test.com/oauth/token`
+          `HTTP error. Unable to fetch https://test.com/token`
         );
         expect(error.error).toBe('request_error');
         expect(error.error_description).toBe(
-          `HTTP error. Unable to fetch https://test.com/oauth/token`
+          `HTTP error. Unable to fetch https://test.com/token`
         );
       }
     });
