@@ -1,6 +1,6 @@
 {
   "author": "Auth0",
-  "name": "faisalil-auth0-spa-js",
+  "name": "is4-client-auth-spa-js",
   "description": "Auth0 SDK for Single Page Applications using Authorization Code Grant Flow with PKCE",
   "license": "MIT",
   "version": "2.2.2",
